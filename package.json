@@ -57,7 +57,6 @@
     "jasmine": "^2.99.0",
     "prebuildify": "^5.0.0",
     "run-script-os": "^1.0.3",
-    "tape": "^4.8.0",
-    "targetpractice": "0.0.7"
+    "tape": "^4.8.0"
   }
 }
