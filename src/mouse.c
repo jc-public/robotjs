@@ -169,7 +169,7 @@ MMSignedPoint getMousePos()
 	CGPoint point = CGEventGetLocation(event);
 	CFRelease(event);
 
-	return CGPointFromMMSignedPoint(point);
+	return MMSignedPointFromCGPoint(point);
 #elif defined(USE_X11)
 	int x, y; /* This is all we care about. Seriously. */
 	Window garb1, garb2; /* Why you can't specify NULL as a parameter */
@@ -180,12 +180,12 @@ MMSignedPoint getMousePos()
 	XQueryPointer(display, XDefaultRootWindow(display), &garb1, &garb2,
 	              &x, &y, &garb_x, &garb_y, &more_garbage);
 
-	return MMPointMake(x, y);
+	return MMSignedPointMake(x, y);
 #elif defined(IS_WINDOWS)
 	POINT point;
 	GetCursorPos(&point);
 
-	return CGPointFromMMSignedPoint(point);
+	return MMSignedPointFromPOINT(point);
 #endif
 }
 
@@ -373,7 +373,7 @@ static double crude_hypot(double x, double y)
 
 bool smoothlyMoveMouse(MMPoint endPoint,double speed)
 {
-	MMPoint pos = getMousePos();
+	MMSignedPoint pos = getMousePos();
 	MMSize screenSize = getMainDisplaySize();
 	double velo_x = 0.0, velo_y = 0.0;
 	double distance;
