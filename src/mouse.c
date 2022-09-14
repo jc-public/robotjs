@@ -162,14 +162,14 @@ void dragMouse(MMSignedPoint point, const MMMouseButton button)
 #endif
 }
 
-MMPoint getMousePos()
+MMSignedPoint getMousePos()
 {
 #if defined(IS_MACOSX)
 	CGEventRef event = CGEventCreate(NULL);
 	CGPoint point = CGEventGetLocation(event);
 	CFRelease(event);
 
-	return MMPointFromCGPoint(point);
+	return CGPointFromMMSignedPoint(point);
 #elif defined(USE_X11)
 	int x, y; /* This is all we care about. Seriously. */
 	Window garb1, garb2; /* Why you can't specify NULL as a parameter */
@@ -185,7 +185,7 @@ MMPoint getMousePos()
 	POINT point;
 	GetCursorPos(&point);
 
-	return MMPointFromPOINT(point);
+	return CGPointFromMMSignedPoint(point);
 #endif
 }
 
@@ -197,7 +197,7 @@ MMPoint getMousePos()
 void toggleMouse(bool down, MMMouseButton button)
 {
 #if defined(IS_MACOSX)
-	const CGPoint currentPos = CGPointFromMMPoint(getMousePos());
+	const CGPoint currentPos = CGPointFromMMSignedPoint(getMousePos());
 	const CGEventType mouseType = MMMouseToCGEventType(down, button);
 	CGEventRef event = CGEventCreateMouseEvent(NULL,
 	                                           mouseType,
