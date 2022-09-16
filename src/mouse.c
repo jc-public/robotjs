@@ -238,7 +238,7 @@ void doubleClick(MMMouseButton button)
 #if defined(IS_MACOSX)
 
 	/* Double click for Mac. */
-	const CGPoint currentPos = CGPointFromMMPoint(getMousePos());
+	const CGPoint currentPos = CGPointFromMMSignedPoint(getMousePos());
 	const CGEventType mouseTypeDown = MMMouseToCGEventType(true, button);
 	const CGEventType mouseTypeUP = MMMouseToCGEventType(false, button);
 
