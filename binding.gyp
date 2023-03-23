@@ -44,10 +44,10 @@
       ['OS == "linux"', {
         'link_settings': {
           'libraries': [
-            '/usr/lib/x86_64-linux-gnu/libpng.a',
-            '/usr/lib/x86_64-linux-gnu/libz.a',
-            '/usr/lib/x86_64-linux-gnu/libX11.a',
-            '/usr/lib/x86_64-linux-gnu/libXtst.a'
+            '/usr/lib64/libpng.a',
+            '-lz',
+            '-lX11',
+            '-lXtst'
           ]
         },
         
